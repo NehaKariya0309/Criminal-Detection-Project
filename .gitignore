@@ -1,0 +1,16 @@
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+
+# Virtual environment directories
+venv/
+env/
+.venv/
+
+# IDE settings
+.idea/
+.vscode/
+
+# Other files to ignore
+*.env
+*.DS_Store
