@@ -14,12 +14,25 @@ def add_criminal_to_database(image_path, name):
     if not os.path.isabs(image_path):
         image_path = os.path.abspath(image_path)
 
-    face_encoding = get_face_encoding(image_path)
-    if face_encoding is not None:
+    face_encodings = get_face_encoding(image_path)
+    if len(face_encodings) == 0:
+        # No face detected
+        print("No face detected in the image. Please provide a valid image.")
+        return
+    elif len(face_encodings) > 1:
+        # Multiple faces detected
+        print(f"Multiple faces detected ({len(face_encodings)} faces). Please provide an image with a single face.")
+        return
+    else:
+        # Only one face detected, proceed to store in the database
+        face_encoding = face_encodings[0]
         store_in_database(name, face_encoding)
         print(f"Stored {name}'s face encoding in the database.")
-    else:
-        print("No face detected in the image.")
+    # if face_encoding is not None:
+    #     store_in_database(name, face_encoding)
+    #     print(f"Stored {name}'s face encoding in the database.")
+    # else:
+    #     print("No face detected in the image.")
 
 def detect_criminal_in_image(image_path):
     image = face_recognition.load_image_file(image_path)

@@ -2,7 +2,9 @@
 import sqlite3
 import numpy as np
 # Connect to SQLite database
-conn = sqlite3.connect('criminal_db.db')
+
+database_path = r"C:\Users\HP\Desktop\Criminal Detection Project\criminal_db.db"
+conn = sqlite3.connect(database_path)
 c = conn.cursor()
 
 # Create the table for criminals if it doesn't exist
